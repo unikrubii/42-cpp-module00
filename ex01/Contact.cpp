@@ -36,3 +36,16 @@ void	Contact::setContactFromPrompt( void ) {
 	std::cout << "Darkest Secret: ";
 	std::cin >> this->_darkestSecret;
 }
+
+void	Contact::displayContactInfo( int index ) {
+	std::cout << std::endl;
+	
+	std::cout << "Contact Info Id: " << index << std::endl;
+	std::cout << "\t - First Name: " << this->_firstName << std::endl; 
+	std::cout << "\t - Last Name: " << this->_lastName << std::endl; 
+	std::cout << "\t - Nickname: " << this->_nickName << std::endl; 
+	std::cout << "\t - Phone Number: " << this->_phoneNumber << std::endl; 
+	std::cout << "\t - Darkest Secret: " << this->_darkestSecret << std::endl;
+
+	std::cout << std::endl; 
+}

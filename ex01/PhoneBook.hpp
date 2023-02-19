@@ -2,18 +2,21 @@
 # define PHONE_BOOK_H
 
 # include <iostream>
-# include "contact.hpp"
+# include <iomanip>
+# include <string>
+# include "Contact.hpp"
 
 class PhoneBook {
 	private:
 		int	_contactIndex;
-		Contact	contact[8];
+		Contact	_contact[8];
 
 	public:
 		PhoneBook( void );
 		~PhoneBook( void );
 
-
+		void addContactToPhoneBook( void );
+		void showPhoneBook( void );
 };
 
 #endif
