@@ -2,6 +2,7 @@
 # define CONTACT_H
 
 # include <iostream>
+# include "color.hpp"
 
 class Contact {
 	private:
@@ -14,8 +15,15 @@ class Contact {
 	public:
 		Contact( void );
 		~Contact( void );
-		void		setContactFromPrompt( void );
-		void	displayContactInfo( int index );
+
+		void setContactFromPrompt( void );
+		void displayContactInfo( int index );
+
+		std::string getFirstNameSub( void );
+		std::string getLastNameSub( void );
+		std::string getNickNameSub( void );
+		std::string getPhoneNumberSub( void );
+		std::string getDarkestSecret( void );
 };
 
 #endif

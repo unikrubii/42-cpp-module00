@@ -6,8 +6,6 @@ Contact::Contact() {
 	this->_nickName = "";
 	this->_phoneNumber = "";
 	this->_darkestSecret = "";
-
-	std::cout << "Contact Initialized" << std::endl;
 }
 
 Contact::~Contact() {
@@ -16,28 +14,48 @@ Contact::~Contact() {
 	this->_nickName = "";
 	this->_phoneNumber = "";
 	this->_darkestSecret = "";
-
-	std::cout << "Contact Reset" << std::endl;
 }
 
-void	Contact::setContactFromPrompt( void ) {
+void Contact::setContactFromPrompt( void ) {
+	std::string firstName;
+	std::string lastName; 
+	std::string nickName; 
+	std::string phoneNumber;
+	std::string darkestSecret;
+
 	std::cout << "First Name: ";
-	std::cin >> this->_firstName;
+	if ( !std::getline( std::cin, firstName ) ) {
+		return ;
+	}
 
 	std::cout << "Last Name: ";
-	std::cin >> this->_lastName;
+	if ( !std::getline( std::cin, lastName ) ) {
+		return ;
+	}
 
 	std::cout << "Nickname: ";
-	std::cin >> this->_nickName;
+	if ( !std::getline( std::cin, nickName ) ) {
+		return ;
+	}
 
 	std::cout << "Phone Number: ";
-	std::cin >> this->_phoneNumber;
+	if ( !std::getline( std::cin, phoneNumber ) ) {
+		return ;
+	}
 
 	std::cout << "Darkest Secret: ";
-	std::cin >> this->_darkestSecret;
+	if ( !std::getline( std::cin, darkestSecret ) ) {
+		return ;
+	}
+
+	this->_firstName = firstName;
+	this->_lastName = lastName;
+	this->_nickName = nickName;
+	this->_phoneNumber = phoneNumber;
+	this->_darkestSecret = darkestSecret;
 }
 
-void	Contact::displayContactInfo( int index ) {
+void Contact::displayContactInfo( int index ) {
 	std::cout << std::endl;
 	
 	std::cout << "Contact Info Id: " << index << std::endl;
@@ -48,4 +66,24 @@ void	Contact::displayContactInfo( int index ) {
 	std::cout << "\t - Darkest Secret: " << this->_darkestSecret << std::endl;
 
 	std::cout << std::endl; 
+}
+
+std::string Contact::getFirstNameSub( void ) {
+	return this->_firstName.substr(0, 10);
+}
+
+std::string Contact::getLastNameSub( void ) {
+	return this->_lastName.substr(0, 10);
+}
+
+std::string Contact::getNickNameSub( void ) {
+	return this->_nickName.substr(0, 10);
+}
+
+std::string Contact::getPhoneNumberSub( void ) {
+	return this->_phoneNumber.substr(0, 10);
+}
+
+std::string Contact::getDarkestSecret( void ) {
+	return this->_phoneNumber;
 }

@@ -4,18 +4,19 @@
 # include <iostream>
 # include <iomanip>
 # include <string>
+# include <sstream>
 # include "Contact.hpp"
 
 class PhoneBook {
 	private:
-		int	_contactIndex;
-		Contact	_contact[8];
+		int _contactIndex;
+		Contact _contact[8];
 
 	public:
 		PhoneBook( void );
 		~PhoneBook( void );
 
-		void addContactToPhoneBook( void );
+		void addContactToPhoneBook( int index );
 		void showPhoneBook( void );
 };
 
