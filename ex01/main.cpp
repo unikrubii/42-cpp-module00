@@ -14,7 +14,7 @@ int	main( void ) {
 
 		std::cout << "> ";
 		if ( !std::getline( std::cin, input ) ) {
-			std::cout << std::endl << BHRED << "Error: Failed to read input" << RES << std::endl << std::endl;
+			std::cout << std::endl << std::endl << BHRED << "Error: Failed to read input" << RES << std::endl;
 			return (1);
 		}
 
