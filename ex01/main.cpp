@@ -7,14 +7,19 @@ int	main( void ) {
 	std::string input;
 	while (1) {
 
-		std::cout << "Enter a command: " << std::endl;
+		std::cout << std::endl << "Enter a command: " << std::endl;
 		std::cout << "1. ADD" << std::endl;
 		std::cout << "2. SEARCH" << std::endl;
 		std::cout << "3. EXIT" << std::endl;
 
 		std::cout << "> ";
-		std::cin >> input;
+		if ( !std::getline( std::cin, input ) ) {
+			std::cout << std::endl << BHRED << "Error: Failed to read input" << RES << std::endl << std::endl;
+			return (1);
+		}
+
 		if ( input.length() == 0 ) {
+			input.clear();
 			continue ;
 		}
 
@@ -33,8 +38,4 @@ int	main( void ) {
 		
 		input.clear();
 	}
-
-
-	// contact.displayContactInfo(0);
-	// contact.displayContactInfo();
 }

@@ -18,6 +18,8 @@ class PhoneBook {
 
 		void addContactToPhoneBook( void );
 		void showPhoneBook( void );
+		int	isEmpty( std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber );
+		void getPhoneBook( void );
 };
 
 #endif

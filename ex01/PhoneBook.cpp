@@ -32,6 +32,11 @@ void PhoneBook::addContactToPhoneBook( void ) {
 		return ;
 	}
 
+	if (firstName.empty() && lastName.empty() && nickName.empty() ) {
+		std::cout << std::endl << RED << "Hey! you can't just leave your info empty." << RES << std::endl << std::endl;
+		return ;
+	}
+
 	std::cout << "Phone Number: ";
 	if ( !std::getline( std::cin, phoneNumber ) ) {
 		return ;
@@ -42,30 +47,21 @@ void PhoneBook::addContactToPhoneBook( void ) {
 		return ;
 	}
 
-	if (firstName.empty() && lastName.empty() && nickName.empty() && phoneNumber.empty() && darkestSecret.empty() ) {
-		return ;
-	}
 
 	contact.addContact( firstName, lastName, nickName, phoneNumber, darkestSecret );
-	// contact.setContactFromPrompt();
-
-	// if ( contact.getFirstNameSub().empty() && contact.getLastNameSub().empty() && contact.getNickNameSub().empty() && contact.getPhoneNumberSub().empty() && contact.getDarkestSecret().empty() ) {
-	// 	return ;
-	// }
 
 	this->_contact[PhoneBook::_contactIndex] = contact;
 	PhoneBook::_contactIndex = ( ( PhoneBook::_contactIndex + 1 ) % 8 );
 }
 
 void PhoneBook::showPhoneBook( void ) {
-	std::cout << _contactIndex << std::endl;
 	Contact currentContact;
 
 	std::cout << std::endl << "This is your Phone Book" << std::endl;
 
 	int i = 0;
 	if ( this->_contact[0].getFirstNameSub().empty() && this->_contact[0].getLastNameSub().empty() && this->_contact[0].getNickNameSub().empty() && this->_contact[0].getPhoneNumberSub().empty() && this->_contact[0].getDarkestSecret().empty() ) {
-		std::cout << RED << "No data in Phonebook" << RES << std::endl;
+		std::cout << std::endl << RED << "No data in Phonebook" << RES << std::endl << std::endl;
 		return ;
 	}
 
@@ -77,9 +73,16 @@ void PhoneBook::showPhoneBook( void ) {
 
 		if ( i == 0 ) {
 			std::cout << BHCYN << "\t ===================================================" << RES << std::endl;
+			std::cout << BHCYN << "\t| " << RES << std::setw(10) << "index";
+			std::cout << " | " << std::setw(10) << "first name";
+			std::cout << " | " << std::setw(10) << "last name";
+			std::cout << " | " << std::setw(10) << "nickname" << BHCYN << " |" << RES << std::endl;
+			std::cout << BHCYN << "\t ===================================================" << RES << std::endl;
 		}
 
-		std::cout << BHCYN << "\t| " << RES << std::setw(10) << ( firstName.empty() ? "" : std::to_string(i) );
+		int isEmpty = this->isEmpty( firstName, lastName, nickName, phoneNumber );
+
+		std::cout << BHCYN << "\t| " << RES << std::setw(10) << ( isEmpty ? "" : std::to_string(i) );
 		std::cout << " | " << std::setw(10) << ( firstName.empty() ? "" : firstName );
 		std::cout << " | " << std::setw(10) << ( lastName.empty() ? "" : lastName );
 		std::cout << " | " << std::setw(10) << ( nickName.empty() ? "" : nickName ) << BHCYN << " |" << RES << std::endl;
@@ -91,7 +94,38 @@ void PhoneBook::showPhoneBook( void ) {
 		i++;
 	}
 
-	std::cout << std::endl << "Enter the index of the contact you want to see" << std::endl;
+	this->getPhoneBook();
+}
+
+void PhoneBook::getPhoneBook( void ) {
+	std::string index;
+	std::cout << "Enter the index of the contact you want to see: ";
+	if ( !std::getline( std::cin, index ) ) {
+		return ;
+	}
+	if ( index < "0" || index > "7" ) {
+		std::cout << std::endl << RED << "No SUS index in Phonebook!!" << RES << std::endl << std::endl;
+		return ;
+	}
+
+	int i = 0;
+	while ( i < 8 ) {
+		if ( std::to_string(i) == index ) {
+			if ( this->_contact[i].getFirstNameSub().empty() && this->_contact[i].getLastNameSub().empty() && this->_contact[i].getNickNameSub().empty() && this->_contact[i].getPhoneNumberSub().empty() && this->_contact[i].getDarkestSecret().empty() ) {
+				std::cout << std::endl << RED << "No SUS data in Phonebook" << RES << std::endl << std::endl;
+				return ;
+			}
+			this->_contact[i].displayContactInfo( i );
+			return ;
+		}
+		i++;
+	}
+
+	std::cout << std::endl << RED << "No SUS index in Phonebook" << RES << std::endl << std::endl;
+}
+
+int	PhoneBook::isEmpty( std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber ) {
+	return ( firstName.empty() && lastName.empty() && nickName.empty() && phoneNumber.empty() );
 }
 
 int PhoneBook::_contactIndex = 0;
