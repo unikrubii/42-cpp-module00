@@ -14,9 +14,9 @@ int	main( void ) {
 
 		std::cout << "> ";
 		std::cin >> input;
-		// if ( input.c_str() == NULL ) {
-		// 	continue ;
-		// }
+		if ( input.length() == 0 ) {
+			continue ;
+		}
 
 		if ( input == "EXIT" || input == "3" ) {
 			break;
