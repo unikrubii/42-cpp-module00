@@ -4,9 +4,8 @@ int	main( void ) {
 	Contact contact;
 	PhoneBook phoneBook;
 
-	int index = 0;
+	std::string input;
 	while (1) {
-		std::string input;
 
 		std::cout << "Enter a command: " << std::endl;
 		std::cout << "1. ADD" << std::endl;
@@ -15,10 +14,9 @@ int	main( void ) {
 
 		std::cout << "> ";
 		std::cin >> input;
-
-		if ( index == 8 ) {
-			index = 0;
-		}
+		// if ( input.c_str() == NULL ) {
+		// 	continue ;
+		// }
 
 		if ( input == "EXIT" || input == "3" ) {
 			break;
@@ -27,12 +25,13 @@ int	main( void ) {
 			phoneBook.showPhoneBook();
 		}
 		else if ( input == "ADD" || input == "add" || input == "1" ) {
-			phoneBook.addContactToPhoneBook( index );
+			phoneBook.addContactToPhoneBook();
 		}
 		else {
 			std::cout << std::endl << BHRED << "Invalid Command!!" << RES << std::endl << std::endl;
 		}
-		index++;
+		
+		input.clear();
 	}
 
 

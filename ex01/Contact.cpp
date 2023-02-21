@@ -16,10 +16,18 @@ Contact::~Contact() {
 	this->_darkestSecret = "";
 }
 
+void Contact::addContact( std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret ) {
+	this->_firstName = firstName;
+	this->_lastName = lastName;
+	this->_nickName = nickName;
+	this->_phoneNumber = phoneNumber;
+	this->_darkestSecret = darkestSecret;
+}
+
 void Contact::setContactFromPrompt( void ) {
 	std::string firstName;
-	std::string lastName; 
-	std::string nickName; 
+	std::string lastName;
+	std::string nickName;
 	std::string phoneNumber;
 	std::string darkestSecret;
 
@@ -29,21 +37,25 @@ void Contact::setContactFromPrompt( void ) {
 	}
 
 	std::cout << "Last Name: ";
+	std::cin >> lastName;
 	if ( !std::getline( std::cin, lastName ) ) {
 		return ;
 	}
 
 	std::cout << "Nickname: ";
+	std::cin >> nickName;
 	if ( !std::getline( std::cin, nickName ) ) {
 		return ;
 	}
 
 	std::cout << "Phone Number: ";
+	std::cin >> phoneNumber;
 	if ( !std::getline( std::cin, phoneNumber ) ) {
 		return ;
 	}
 
 	std::cout << "Darkest Secret: ";
+	std::cin >> darkestSecret;
 	if ( !std::getline( std::cin, darkestSecret ) ) {
 		return ;
 	}

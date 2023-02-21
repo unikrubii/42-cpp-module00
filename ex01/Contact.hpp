@@ -18,6 +18,7 @@ class Contact {
 
 		void setContactFromPrompt( void );
 		void displayContactInfo( int index );
+		void addContact( std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret );
 
 		std::string getFirstNameSub( void );
 		std::string getLastNameSub( void );
